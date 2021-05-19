@@ -7,12 +7,22 @@ const positionRoutes = require('./routes/position')
 const logger = require('./logger/logger')
 const morgan = require('morgan')
 require("dotenv").config()
+const mongoose = require('mongoose') 
+const keys = require('./config/keys')
 declare let process: {
   env: {
     PORT: number;
     HOST: string;
   };
 };
+
+mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('MongoDb connect')
+});
 
 //logger.info('Hello again distributed logs');
 
