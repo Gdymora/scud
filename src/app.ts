@@ -9,6 +9,7 @@ const morgan = require('morgan')
 require("dotenv").config()
 const mongoose = require('mongoose') 
 const keys = require('./config/keys')
+
 declare let process: {
   env: {
     PORT: number;
@@ -16,7 +17,8 @@ declare let process: {
   };
 };
 
-mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -29,7 +31,7 @@ db.once('open', function() {
 let app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(require('morgan')('dev'))
+app.use(require('morgan')('dev'))
 app.use(require("morgan")("combined", { stream: logger.stream }));  //added here
 app.use(require('cors')())
 
