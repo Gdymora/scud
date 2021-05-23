@@ -1,3 +1,8 @@
 {"message":"Hello again distributed logs","level":"info"}
 {"message":"Hello again distributed logs","level":"info"}
 {"message":"127.0.0.1 - - [17/May/2021:10:29:34 +0000] \"POST /api/auth/login HTTP/1.1\" 200 53 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:15:54:04 +0000] \"POST /api/auth/login HTTP/1.1\" 404 77 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:15:55:00 +0000] \"POST /api/auth/register HTTP/1.1\" 201 145 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:15:57:31 +0000] \"POST /api/auth/login HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:15:59:17 +0000] \"POST /api/auth/login HTTP/1.1\" 401 84 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:15:59:28 +0000] \"POST /api/auth/login HTTP/1.1\" 404 77 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}

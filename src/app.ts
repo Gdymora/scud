@@ -7,8 +7,17 @@ const positionRoutes = require('./routes/position')
 const logger = require('./logger/logger')
 const morgan = require('morgan')
 require("dotenv").config()
-const mongoose = require('mongoose') 
+const mongoose = require('mongoose')
 const keys = require('./config/keys')
+
+/* 
+127.0.0.1:5120/api/auth/register
+127.0.0.1:5120/api/auth/login 
+{
+    "email": "resintegra@mail.ru",
+    "password": "123456"
+}
+*/
 
 declare let process: {
   env: {
@@ -18,10 +27,10 @@ declare let process: {
 };
 
 
-mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   // we're connected!
   console.log('MongoDb connect')
 });
