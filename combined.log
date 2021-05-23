@@ -6,3 +6,8 @@
 {"message":"127.0.0.1 - - [23/May/2021:15:57:31 +0000] \"POST /api/auth/login HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"127.0.0.1 - - [23/May/2021:15:59:17 +0000] \"POST /api/auth/login HTTP/1.1\" 401 84 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"127.0.0.1 - - [23/May/2021:15:59:28 +0000] \"POST /api/auth/login HTTP/1.1\" 404 77 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:16:26:49 +0000] \"GET /api/category HTTP/1.1\" 401 - \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:16:28:55 +0000] \"GET /api/category HTTP/1.1\" 401 - \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:16:29:33 +0000] \"POST /api/auth/login HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:16:30:21 +0000] \"GET /api/category HTTP/1.1\" 401 - \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [23/May/2021:16:31:09 +0000] \"GET /api/category HTTP/1.1\" 200 32 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
