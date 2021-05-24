@@ -1,7 +1,6 @@
-import * as mongoose from 'mongoose';
-import {  Schema } from 'mongoose';
+import mongoose from 'mongoose'
 
-const orderSchema: Schema = new Schema({
+const orderSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
@@ -25,8 +24,9 @@ const orderSchema: Schema = new Schema({
   ],
   user: {
     ref: 'users',
-    type: Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId
   }
 })
 
-module.exports = mongoose.model('orders', orderSchema)
+const Order = mongoose.model('orders', orderSchema)
+export { Order }

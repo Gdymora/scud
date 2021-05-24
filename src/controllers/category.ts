@@ -1,5 +1,5 @@
 
-const Category = require('../models/Category')
+import { Category } from '../models/Category'
 import { Position } from '../models/Position'
 const errorHandler = require('../utils/errorHandler')
 
@@ -34,13 +34,14 @@ module.exports.remove = async function (req, res) {
 }
 
 module.exports.create = async function (req, res) {
+  console.log(req.user)
   const category = new Category({
     name: req.body.name,
     user: req.user.id,
     imageSrc: req.file ? req.file.path : ''
   })
 
-  try {
+  try {   
     await category.save()
     res.status(201).json(category)
   } catch (e) {
@@ -50,13 +51,14 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const updated = {
-    name: req.body.name
+    name: req.body.name,
+    imageSrc: req.file.path
   }
 
-  if (req.file) {
-    //updated.imageSrc = req.file.path
-  }
-
+  if (req.file) {    
+    updated.imageSrc = req.file.path
+  } 
+  
   try {
     const category = await Category.findOneAndUpdate(
       { _id: req.params.id },

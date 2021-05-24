@@ -38,7 +38,7 @@ db.once('open', function () {
 })
 
 //logger.info('Hello again distributed logs');
-
+app.use('/uploads', express.static('uploads'));
 app.use(passport.initialize())
 require('./middleware/passport')(passport)
 app.use(express.urlencoded({ extended: true }))
