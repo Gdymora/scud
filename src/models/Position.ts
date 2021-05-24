@@ -1,7 +1,7 @@
-import * as mongoose from 'mongoose';
-import {  Schema } from 'mongoose';
 
-const positionSchema = new Schema({
+import mongoose from 'mongoose'
+
+const positionSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -12,12 +12,14 @@ const positionSchema = new Schema({
   },
   category: {
     ref: 'categories',
-    type: Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId
   },
   user: {
     ref: 'users',
-    type: Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId
   }
 })
 
-module.exports = mongoose.model('positions', positionSchema)
+
+const Position = mongoose.model('positions', positionSchema)
+export { Position }

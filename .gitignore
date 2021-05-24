@@ -3,7 +3,9 @@
 /tmp
 # dependencies
 /node_modules
-.ENV
+.env
+/src/logger
+
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json

@@ -1,7 +1,6 @@
-import * as mongoose from 'mongoose';
-import {  Schema } from 'mongoose';
+import mongoose from 'mongoose'
 
-const categorySchema: Schema = new Schema({
+const categorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -12,8 +11,9 @@ const categorySchema: Schema = new Schema({
   },
   user: {
     ref: 'users',
-    type: Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId
   }
 })
 
-module.exports = mongoose.model('categories', categorySchema)
+const Categorie = mongoose.model('categories', categorySchema)
+export { Categorie }

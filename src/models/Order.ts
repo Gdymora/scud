@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import {  Schema } from 'mongoose';
 
-const orderSchema = new Schema({
+const orderSchema: Schema = new Schema({
   date: {
     type: Date,
     default: Date.now

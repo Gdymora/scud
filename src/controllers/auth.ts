@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-const User = require('../models/User')
+import { User } from '../models/User'
+
 const keys = require('../config/keys')
 const errorHandler = require('../utils/errorHandler')
 

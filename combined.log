@@ -11,3 +11,6 @@
 {"message":"127.0.0.1 - - [23/May/2021:16:29:33 +0000] \"POST /api/auth/login HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"127.0.0.1 - - [23/May/2021:16:30:21 +0000] \"GET /api/category HTTP/1.1\" 401 - \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"127.0.0.1 - - [23/May/2021:16:31:09 +0000] \"GET /api/category HTTP/1.1\" 200 32 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [24/May/2021:13:37:53 +0000] \"POST /api/auth/register HTTP/1.1\" 409 84 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [24/May/2021:13:46:34 +0000] \"POST /api/auth/register HTTP/1.1\" 409 84 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [24/May/2021:13:46:45 +0000] \"POST /api/auth/login HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
