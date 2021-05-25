@@ -66,3 +66,5 @@
 {"message":"127.0.0.1 - - [24/May/2021:18:05:02 +0000] \"POST /api/category HTTP/1.1\" 201 169 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"127.0.0.1 - - [24/May/2021:18:05:43 +0000] \"GET /uploads/24052021-210502_835-03052018-222552_827-cat..jpeg HTTP/1.1\" 404 196 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36\"\n","level":"info"}
 {"message":"127.0.0.1 - - [24/May/2021:18:06:08 +0000] \"POST /api/category HTTP/1.1\" 201 149 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"127.0.0.1 - - [25/May/2021:13:10:32 +0000] \"GET / HTTP/1.1\" 200 18 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36\"\n","level":"info"}
+{"message":"127.0.0.1 - - [25/May/2021:13:10:32 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36\"\n","level":"info"}
