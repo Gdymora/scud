@@ -1,6 +1,13 @@
 
 import mongoose from 'mongoose'
 
+interface PositionInterface extends mongoose.Document {
+  name: string
+  cost: number
+  category: mongoose.Schema.Types.ObjectId
+  user: mongoose.Schema.Types.ObjectId
+}
+
 const positionSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,5 +28,5 @@ const positionSchema = new mongoose.Schema({
 })
 
 
-const Position = mongoose.model('positions', positionSchema)
+const Position = mongoose.model<PositionInterface>('positions', positionSchema)
 export { Position }

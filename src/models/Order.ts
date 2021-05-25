@@ -1,5 +1,12 @@
 import mongoose from 'mongoose'
 
+interface OrderInterface extends mongoose.Document {
+  date: Date
+  order: number
+  list: []
+  user: mongoose.Schema.Types.ObjectId
+}
+
 const orderSchema = new mongoose.Schema({
   date: {
     type: Date,
@@ -28,5 +35,5 @@ const orderSchema = new mongoose.Schema({
   }
 })
 
-const Order = mongoose.model('orders', orderSchema)
+const Order = mongoose.model<OrderInterface>('orders', orderSchema)
 export { Order }
