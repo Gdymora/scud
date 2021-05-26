@@ -6,7 +6,7 @@ const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
 const orderRoutes = require('./routes/order')
 const positionRoutes = require('./routes/position')
-const logger = require('./logger/logger')
+//const logger = require('./logger/logger')
 const morgan = require('morgan')
 require("dotenv").config()
 
@@ -44,7 +44,7 @@ require('./middleware/passport')(passport)
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(require('morgan')('dev'))
-app.use(require("morgan")("combined", { stream: logger.stream }))  //added here
+//app.use(require("morgan")("combined", { stream: logger.stream }))  //added here
 app.use(require('cors')())
 
 app.use('/api/auth', authRoutes)
