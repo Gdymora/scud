@@ -4,6 +4,7 @@ import { Position } from '../models/Position'
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
+  console.log(req.user.id)
   try {
     const categories = await Category.find({ user: req.user.id })
     res.status(200).json(categories)
@@ -34,7 +35,6 @@ module.exports.remove = async function (req, res) {
 }
 
 module.exports.create = async function (req, res) {
-  console.log(req.user)
   const category = new Category({
     name: req.body.name,
     user: req.user.id,

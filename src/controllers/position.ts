@@ -2,6 +2,7 @@ import { Position } from '../models/Position'
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getByCategoryId = async function (req, res) {
+  console.log(req.params, req.user)
   try {
     const positions = await Position.find({
       category: req.params.categoryId,
@@ -9,6 +10,7 @@ module.exports.getByCategoryId = async function (req, res) {
     })
     res.status(200).json(positions)
   } catch (e) {
+    console.log('error')
     errorHandler(res, e)
   }
 }
