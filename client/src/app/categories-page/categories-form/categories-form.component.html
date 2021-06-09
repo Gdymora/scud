@@ -1,15 +1,19 @@
-<div class="page-title">
-    <h4>
-        <a routerLink="/categories">Категории</a>
-        <i class="material-icons">keyboard_arrow_right</i>
-        {{isNew ? 'Добавить' : 'Редактировать'}} категорию
-    </h4>
-    <span>
-        <button *ngIf="!isNew" class="btn btn-small red" (click)="deleteCategory()">
-            <i class="material-icons">delete</i>
-        </button>
-    </span>
-</div>
+<nav>
+    <div class="nav-wrapper teal">
+        <div class="col s12">
+            <a class="breadcrumb" routerLink="/order">Заказ</a>
+            <a class="breadcrumb"> {{isNew ? 'Добавить' : 'Редактировать'}} категорию</a>
+
+            <ul class="right">
+                <a *ngIf="!isNew" class="btn btn-small red" (click)="deleteCategory()">
+                    <i class="material-icons">delete</i>
+                </a>
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
 
 <div class="row">
     <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">
