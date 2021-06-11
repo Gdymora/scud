@@ -60,7 +60,7 @@ module.exports.analytics = async function (req, res) {
     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2)
 
     const chart = Object.keys(ordersMap).map(label => {
-      // label == 05.05.2018
+      // label == 11.06.2021
       const gain = calculatePrice(ordersMap[label])
       const order = ordersMap[label].length
 
