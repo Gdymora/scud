@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { User } from '../models/User'
-
 const keys = require('../config/keys')
-const errorHandler = require('../utils/errorHandler')
+import { errorHandler } from '../utils/errorHandler'
+
 
 module.exports.login = async function (req, res) {
   const candidate = await User.findOne({ email: req.body.email })

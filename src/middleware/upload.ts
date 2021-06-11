@@ -1,5 +1,6 @@
 const multer = require('multer')
-const moment = require('moment')
+import moment from 'moment'
+
 const path = require ('path'); 
 
 const storage = multer.diskStorage({

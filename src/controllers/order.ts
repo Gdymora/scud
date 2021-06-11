@@ -1,5 +1,5 @@
 import { Order } from '../models/Order'
-const errorHandler = require('../utils/errorHandler')
+import { errorHandler } from '../utils/errorHandler'
 
  interface Query {
     user: any,

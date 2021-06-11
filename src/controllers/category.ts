@@ -1,7 +1,7 @@
 
 import { Category } from '../models/Category'
 import { Position } from '../models/Position'
-const errorHandler = require('../utils/errorHandler')
+import { errorHandler } from '../utils/errorHandler'
 
 module.exports.getAll = async function (req, res) {
   console.log(req.user.id)

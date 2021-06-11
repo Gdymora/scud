@@ -1,5 +1,5 @@
 import { Position } from '../models/Position'
-const errorHandler = require('../utils/errorHandler')
+import { errorHandler } from '../utils/errorHandler'
 
 module.exports.getByCategoryId = async function (req, res) {
   console.log(req.params, req.user)
