@@ -1,8 +1,12 @@
+import { HashLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { registerAction } from '../../store/actions/register.action';
+import { select, Store } from '@ngrx/store'
+import { Observable } from 'rxjs';
+import { registerAction } from '../../store/actions';
+
+import { isSubmittingSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +17,7 @@ export class RegisterComponent implements OnInit {
   hide = true
   form: FormGroup
   submitted: boolean = false
+  isSubmitting$: Observable<boolean>
 
   constructor(private router: Router, private store: Store) {
     this.form = new FormGroup({
@@ -22,7 +27,15 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.initializeValues()
+  }
+
+  initializeValues(): void {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
+    console.log(this.isSubmitting$)
+  }
+
 
   register() {
     this.store.dispatch(registerAction(this.form.value))

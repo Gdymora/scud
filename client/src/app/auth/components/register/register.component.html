@@ -40,7 +40,7 @@
                     </div>
                 </mat-form-field>
                 <mat-card-actions class="text-right">
-                    <button mat-raised-button color="primary">
+                    <button [disabled]="isSubmitting$ | async" mat-raised-button color="primary">
                         Register
                     </button>
                 </mat-card-actions>
@@ -49,3 +49,4 @@
     </mat-card>
     <p>admin@teedex.net</p>
 </div>
+{{isSubmitting$|async }}
