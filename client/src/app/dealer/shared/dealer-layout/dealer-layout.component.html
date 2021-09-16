@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button
+      mat-icon-button
+      class="example-icon"
+      mat-button
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span [routerLink]="['/']">HENDLEX</span>
+    <span class="example-spacer"></span>
+    <mat-list-item routerLink="/admin" [routerLinkActive]="['active']">
+      <a mat-button>Home</a>
+    </mat-list-item>
+    <ul *ngIf="auth.isAuthenticated()">
+      <mat-list-item
+        [routerLink]="['/admin', 'orders']"
+        [routerLinkActive]="['active']"
+      >
+        <a mat-button>Orders</a>
+      </mat-list-item>
+      <mat-list-item [routerLinkActive]="['active']">
+        <a mat-button (click)="logout($event)">Logout</a>
+      </mat-list-item>
+    </ul>
+    <button mat-stroked-button [routerLink]="['/dealer/cart']" I>
+      <mat-icon>shopping_cart</mat-icon>
+      <ng-container *ngIf="cartPositionCount.length > 0">
+        {{ cartPositionCount.length }}
+      </ng-container>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="pages" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

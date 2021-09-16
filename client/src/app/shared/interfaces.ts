@@ -3,78 +3,105 @@ export interface User {
   password: string
 }
 
+export interface Page {
+  total: number
+  size: number
+  count: number
+  number: number
+}
 
-export interface Message {
-  message: string
+export interface Users {
+  id?: number
+  role_id: number
+  role_name?: string
+  status: number
+  email: string
+  pasword?: string
+  fio: string
+  created?: string
+  updated?: string
+  data: Users
+}
+
+export interface Role {
+  id?: number
+  parent_id?: number
+  name?: string
+  status?: number
+  created?: string
+  updated?: string
+  data: Role
+}
+
+export interface Categories {
+  data: [Category]
+  order: 'asc' | 'desc'
+  page: Page
+  search: []
 }
 
 export interface Category {
+  id?: number
+  parent_id: number
   name: string
-  imageSrc?: string
-  user?: string
-  _id?: string
+  status: number
+  created: Date
+  updated: Date
+}
+
+export interface Positions {
+  data: [Position]
+  order: 'asc' | 'desc'
+  page: Page
+  search: []
 }
 
 export interface Position {
-  name: string
-  cost: number
-  category: string
-  user?: string
-  _id?: string
+  id?: number
+  category_id?: number
+  name?: string
+  description?: string
+  article?: string
+  position_id?: string
+  param_id?: string
+  value?: string
+  is_deleted?: number
+  location_id?: string
+  count?: number
+  status?: string
+  payment_type_id?: number
+  price?: number
+  current?: number
+  created?: Date
+  updated?: Date
 }
 
-
-export interface Position {
-  name: string
-  cost: number
-  category: string
-  user?: string
-  _id?: string
-  quantity?: number
+export interface CartPositions extends Position {
+  count: number
 }
 
 export interface Order {
-  date?: Date
-  order?: number
-  user?: string
-  list: OrderPosition[]
-  _id?: string
+  template_id?: number
+  payment_type_id?: number
+  number?: number
+  status?: string
+  description?: string
+  price?: number
 }
 
-export interface OrderPosition {
-  name: string
-  cost: number
-  quantity: number
-  _id?: string
+export interface OrderPositionLInks {
+  order_id?: number
+  position_id?: number
+  price?: number
+  count?: number
 }
 
-export interface Filter {
-  start?: Date
-  end?: Date
-  order?: number
+export interface PositionCounts {
+  id?: number
+  position_id?: number
+  location_id?: number
+  count?: number
+  status?: number
+  created?: Date
+  updated?: Date
 }
-
-
-export interface OverviewPage {
-  orders: OverviewPageItem
-  gain: OverviewPageItem
-}
-
-export interface OverviewPageItem {
-  percent: number
-  compare: number
-  yesterday: number
-  isHigher: boolean
-}
-
-export interface AnalyticsPage {
-  average: number
-  chart: AnalyticsChartItem[]
-}
-
-export interface AnalyticsChartItem {
-  gain: number
-  order: number
-  label: string
-}
-

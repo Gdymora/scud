@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="">
+    <button mat-fab color="primary" routerLink="/admin/dashboard">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <mat-toolbar>
+    <span>Category Create</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        *ngIf="form"
+        class="my-form"
+      >
+        <mat-form-field class="full-width edit">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" formControlName="name" />
+          <div
+            *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('name')?.errors?.required">Enter Name</small>
+            <small *ngIf="form.get('name')?.errors?.name"
+              >Enter valid Name</small
+            >
+          </div>
+        </mat-form-field>
+        <mat-form-field class="full-width edit">
+          <mat-label>Status</mat-label>
+          <input matInput name="status" formControlName="status" />
+          <div
+            *ngIf="form.get('status')?.touched && form.get('status')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('status')?.errors?.required"
+              >Enter Status</small
+            >
+            <small *ngIf="form.get('status')?.errors?.status"
+              >Enter valid Status</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-card-actions class="text-right">
+          <button mat-raised-button type="submit" color="primary">
+            UPDATE
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

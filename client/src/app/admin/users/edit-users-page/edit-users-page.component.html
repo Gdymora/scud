@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="">
+    <button mat-fab color="primary" routerLink="/admin/users">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <mat-toolbar>
+    <span>User Update</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        *ngIf="form"
+        class="my-form"
+      >
+        <mat-form-field class="full-width edit">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" formControlName="email" />
+          <div
+            *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('email')?.errors?.required"
+              >Enter Email</small
+            >
+            <small *ngIf="form.get('email')?.errors?.email"
+              >Enter valid Email</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Fio</mat-label>
+          <input matInput name="fio" formControlName="fio" />
+          <div
+            *ngIf="form.get('fio')?.touched && form.get('fio')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('fio')?.errors?.required">Enter Fio</small>
+            <small *ngIf="form.get('fio')?.errors?.fio">Enter valid Fio</small>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Role</mat-label>
+          <input matInput name="role_id" formControlName="role_id" />
+          <div
+            *ngIf="form.get('role_id')?.touched && form.get('role_id')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('role_id')?.errors?.required"
+              >Enter Role</small
+            >
+            <small *ngIf="form.get('role_id')?.errors?.role_id"
+              >Enter valid Role</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Ststus</mat-label>
+          <input matInput name="status" formControlName="status" />
+          <div
+            *ngIf="form.get('status')?.touched && form.get('status')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('status')?.errors?.required"
+              >Enter Role</small
+            >
+            <small *ngIf="form.get('status')?.errors?.status"
+              >Enter valid Role</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-card-actions class="text-right">
+          <button mat-raised-button type="submit" color="primary">
+            UPDATE
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

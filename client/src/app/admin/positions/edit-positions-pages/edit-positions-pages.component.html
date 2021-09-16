@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="">
+    <button
+      mat-fab
+      color="primary"
+      [routerLink]="['/admin/categories', positions?.category_id, 'position']"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <mat-toolbar>
+    <span>Оновлення позиції</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        *ngIf="form"
+        class="my-form"
+      >
+        <mat-form-field class="full-width edit">
+          <mat-label>Категорія</mat-label>
+          <mat-select
+            formControlName="category_id"
+            [(value)]="positions.category_id"
+          >
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Назва</mat-label>
+          <input matInput name="name" formControlName="name" />
+          <div
+            *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('name')?.errors?.required"
+              >Введіть назву</small
+            >
+            <small *ngIf="form.get('name')?.errors?.name"
+              >Введіть правильну назву</small
+            >
+          </div>
+        </mat-form-field>
+        <mat-form-field class="full-width edit">
+          <mat-label>Артикул</mat-label>
+          <input matInput name="article" formControlName="article" />
+          <div
+            *ngIf="form.get('article')?.touched && form.get('article')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('article')?.errors?.required"
+              >Введіть артикул</small
+            >
+            <small *ngIf="form.get('article')?.errors?.article"
+              >Введіть артикул вірного формату</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Опис</mat-label>
+          <textarea
+            matInput
+            name="description"
+            formControlName="description"
+          ></textarea>
+          <div
+            *ngIf="
+              form.get('description')?.touched &&
+              form.get('description')?.invalid
+            "
+            class="validation"
+          >
+            <small *ngIf="form.get('description')?.errors?.required"
+              >Введіть опис</small
+            >
+            <small *ngIf="form.get('description')?.errors?.description"
+              >Введіть правильний опис</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Ціна</mat-label>
+          <input matInput name="price" formControlName="price" />
+          <div
+            *ngIf="form.get('price')?.touched && form.get('price')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('price')?.errors?.required"
+              >Введіть ціну</small
+            >
+            <small *ngIf="form.get('price')?.errors?.price"
+              >Введіть ціну правильного формату</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="full-width edit">
+          <mat-label>Кількість</mat-label>
+          <input matInput type="number" name="count" formControlName="count" />
+          <div
+            *ngIf="form.get('count')?.touched && form.get('count')?.invalid"
+            class="validation"
+          >
+            <small *ngIf="form.get('count')?.errors?.required"
+              >Введіть кількість</small
+            >
+            <small *ngIf="form.get('count')?.errors?.count"
+              >Введіть правильну кількість</small
+            >
+          </div>
+        </mat-form-field>
+
+        <mat-card-actions class="text-right">
+          <button mat-raised-button type="submit" color="primary">
+            ОНОВИТИ
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

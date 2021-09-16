@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <span [routerLink]="['/']">Coffee</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon"
+    [routerLink]="['/dealer', 'list-of-goods']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>table_chart</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="example-icon"
+    [routerLink]="['/admin', 'dashboard']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>dashboard</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="example-icon"
+    [routerLink]="['/admin', 'login']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>account_box</mat-icon>
+  </button>
+</mat-toolbar>

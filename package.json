@@ -1,5 +1,5 @@
 {
-  "name": "my-crm",
+  "name": "scud_2v",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -24,6 +24,7 @@
     "@types/winston": "^2.4.4",
     "concurrently": "^6.2.0",
     "nodemon": "^2.0.7",
+    "prettier": "^2.4.1",
     "tslint": "^6.1.3",
     "typescript": "^4.2.4"
   },

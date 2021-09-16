@@ -1,0 +1,81 @@
+<div class="container">
+  <p>Position categories</p>
+  <button mat-fab color="primary" [routerLink]="['/dealer/list-of-goods']">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <mat-label>Filter Product</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="filterValue"
+      (blur)="filterProduct(filterValue)"
+      placeholder="Search product name"
+    />
+  </mat-form-field>
+  <div class="spinner-container" *ngIf="!dataSource; else loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #loading>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="article">
+        <th mat-header-cell *matHeaderCellDef>Артикул</th>
+        <td mat-cell *matCellDef="let element">{{ element.article }}</td>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Категорія</th>
+        <td mat-cell *matCellDef="let element">{{ categories }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Назва</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Опис</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Ціна</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef>Кількість</th>
+        <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>Update</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-stroked-button
+            color="warn"
+            [routerLink]="['/dealer/cart']"
+            (click)="addCart(element)"
+          >
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr
+        class="header"
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="getServerNavigateData($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </ng-template>
+</div>

@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-
+import mongoose from "mongoose";
 
 interface UserInterface extends mongoose.Document {
   email: string;
@@ -10,13 +9,13 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-const User = mongoose.model<UserInterface>('users', userSchema)
-export { User }
+const User = mongoose.model<UserInterface>("users", userSchema);
+export { User };

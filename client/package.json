@@ -1,9 +1,9 @@
 {
-  "name": "client",
+  "name": "stockcart",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -11,16 +11,15 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.1",
+    "@angular/cdk": "^12.1.4",
     "@angular/common": "~12.0.1",
     "@angular/compiler": "~12.0.1",
     "@angular/core": "~12.0.1",
     "@angular/forms": "~12.0.1",
+    "@angular/material": "^12.1.4",
     "@angular/platform-browser": "~12.0.1",
     "@angular/platform-browser-dynamic": "~12.0.1",
     "@angular/router": "~12.0.1",
-    "@types/chart.js": "^2.9.32",
-    "chart.js": "^3.3.2",
-    "materialize-css": "^1.0.0-rc.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
@@ -37,6 +36,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.4.1",
     "typescript": "~4.2.3"
   }
 }

@@ -1,49 +1,55 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
 import { User } from '../interfaces'
+import { environment } from 'src/environments/environment'
+import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
+/*firebase.google.com */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-  private token: string 
-
-  constructor(private http: HttpClient) {
+  login(user: User): Observable<User> {
+    return this.http
+      .post<User>(`${environment.url}/user/login`, user)
+      .pipe(tap(this.setToken))
   }
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>('/api/auth/register', user)
-  }
-
-  login(user: User): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>('/api/auth/login', user)
-      .pipe(
-        tap(
-          ({ token }) => {
-            localStorage.setItem('auth-token', token)
-            this.setToken(token)
-          }
-        )
+  private setToken(response: any) {
+    if (response) {
+      const expData = new Date(
+        new Date().getTime() + +response.expires_in * 1000
       )
+      console.log(response.user.expire, ' ', expData)
+      localStorage.setItem('fb-token-exp', expData.toString())
+      localStorage.setItem('fb-token', response.access_token)
+    } else {
+      localStorage.clear()
+    }
   }
 
-  setToken(token: string) {
-    this.token = token
-  }
+  get token() {
+    const expDate = new Date(localStorage.getItem('fb-token-exp') || '{}')
 
-  getToken(): string {
-    return this.token
-  }
+    const isSameTime = (a: Date, b: Date) => {
+      return a.getTime() > b.getTime()
+    }
 
-  isAuthenticated(): boolean {
-    return !!this.token
+    if (isSameTime(new Date(), expDate)) {
+      this.logout()
+      return null
+    }
+    return localStorage.getItem('fb-token')
   }
 
   logout() {
     this.setToken(null)
-    localStorage.clear()
+  }
+
+  isAuthenticated() {
+    return !!this.token
   }
 }
