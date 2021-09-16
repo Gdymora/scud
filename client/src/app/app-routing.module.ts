@@ -17,11 +17,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
-  {
-    path: 'dealer',
-    loadChildren: () =>
-      import('./dealer/dealer.module').then((m) => m.DealerModule),
-  },
 ]
 
 @NgModule({

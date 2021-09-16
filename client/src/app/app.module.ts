@@ -24,7 +24,7 @@ import { environment } from '../environments/environment'; //
     BrowserAnimationsModule,
     SharedModule,
     AuthModule,
-    StoreModule.forRoot([]),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production, 
