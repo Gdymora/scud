@@ -11,6 +11,7 @@ import {
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface'
 import { of } from 'rxjs'
 import { AuthService } from '../../services/auth.services'
+import { HttpErrorResponse } from '@angular/common/http'
 
 /* В приложении Angular на основе служб компоненты отвечают за взаимодействие 
 с внешними ресурсами напрямую через службы. Вместо этого эффекты обеспечивают 
@@ -28,10 +29,11 @@ export class RegisterEffect {
                 return this.authService.register(request).pipe(
                     map((currentUser: CurrentUserInterface) => {
                         console.log('effect', currentUser)
-                        return registerSuccessAction({ request: currentUser })
+                        return registerSuccessAction({ currentUser: currentUser })
                     }),
-                    catchError(() => {
-                        return of(registerFailureAction())
+                    catchError((errorResponse: HttpErrorResponse) => {
+                        console.log('er', errorResponse)
+                        return of(registerFailureAction({ errors: errorResponse.error.message }))
                     })
                 )
             })

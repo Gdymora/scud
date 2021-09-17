@@ -38,6 +38,7 @@ db.once("open", function () {
   console.log("MongoDb connect");
 });
 //logger.info('Hello again distributed logs');
+
 app.use("/uploads", express.static("uploads"));
 app.use(passport.initialize());
 require("./middleware/passport")(passport);

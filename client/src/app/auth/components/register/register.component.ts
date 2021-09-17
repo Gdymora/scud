@@ -46,15 +46,15 @@ export class RegisterComponent implements OnInit {
   register() {
     const request: RegisterRequestInterface = this.form.value
 
-    this.store.dispatch(registerAction({ request }))
+ this.store.dispatch(registerAction({ request }))
     if (this.form.invalid) {
       return
     }
-   /*  this.authS.register(this.form.value).subscribe(
-      currentUser => { console.log(currentUser) },
-      error => { console.log(error) }
-    ) */
-
+    /*  this.authS.register(this.form.value).subscribe(
+       currentUser => { console.log(currentUser) },
+       error => { console.log(error) }
+     ) */
+   
     this.submitted = true
 
   }

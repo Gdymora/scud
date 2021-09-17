@@ -39,47 +39,45 @@ module.exports.login = async function (req, res) {
     });
   }
 };
-
+  
 module.exports.register = async function (req, res) {
-  // email password
-
-
-  const candidate = await User.find({
-    $or:
-      [{ email: req.body.email }, { login: req.body.login }]
-  });
-  if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
-    // Пользователь существует, нужно отправить ошибку
-    console.log('eml', candidate.filter(cand => cand.email == req.body.email))
-    res.status(409).json({
-      message: "Такой email уже занят. Попробуйте другой.",
-    });
-  }
-  else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
-    // Пользователь существует, нужно отправить ошибку
-    console.log('log', candidate.filter(cand => cand.login == req.body.login))
-
-    res.status(409).json({
-      message: "Такой login уже занят. Попробуйте другой.",
-    });
-  } else {
-    console.log("ddd")
-
-    // Нужно создать пользователя
-    const salt = bcrypt.genSaltSync(10);
-    const password = req.body.password;
-    const user = new User({
-      login: req.body.login,
-      email: req.body.email,
-      password: bcrypt.hashSync(password, salt),
+    const candidate = await User.find({
+      $or:
+        [{ email: req.body.email }, { login: req.body.login }]
     });
 
-    try {
-      await user.save();
-      console.log(user)
-      res.status(201).json({ user: user });
-    } catch (e) {
-
+    if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
+      // Пользователь существует, нужно отправить ошибку
+      console.log('eml', candidate.filter(cand => cand.email == req.body.email))
+      res.status(409).json({
+        message: "Такой email уже занят. Попробуйте другой.",
+      });
     }
-  }
-};
+    else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
+      // Пользователь существует, нужно отправить ошибку
+      console.log('log', candidate.filter(cand => cand.login == req.body.login))
+
+      res.status(409).json({
+        message: "Такой login уже занят. Попробуйте другой.",
+      });
+    } else {
+      console.log("ddd")
+
+      // Нужно создать пользователя
+      const salt = bcrypt.genSaltSync(10);
+      const password = req.body.password;
+      const user = new User({
+        login: req.body.login,
+        email: req.body.email,
+        password: bcrypt.hashSync(password, salt),
+      });
+
+      try {
+        await user.save();
+        console.log(user)
+        res.status(201).json({ user: user });
+      } catch (e) {
+
+      }
+    }
+  };

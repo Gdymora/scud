@@ -49,7 +49,6 @@ module.exports.login = function (req, res) {
 };
 module.exports.register = function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        // email password
         const candidate = yield User_1.User.find({
             $or: [{ email: req.body.email }, { login: req.body.login }]
         });
