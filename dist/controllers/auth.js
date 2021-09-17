@@ -51,11 +51,19 @@ module.exports.login = function (req, res) {
 module.exports.register = function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         // email password
-        const candidate = yield User_1.User.findOne({ email: req.body.email });
-        if (candidate) {
+        const candidate = yield User_1.User.find({
+            $or: [{ email: req.body.email }, { login: req.body.login }]
+        });
+        if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
             // Пользователь существует, нужно отправить ошибку
             res.status(409).json({
                 message: "Такой email уже занят. Попробуйте другой.",
+            });
+        }
+        else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
+            // Пользователь существует, нужно отправить ошибку
+            res.status(409).json({
+                message: "Такой login уже занят. Попробуйте другой.",
             });
         }
         else {
@@ -63,12 +71,14 @@ module.exports.register = function (req, res) {
             const salt = bcryptjs_1.default.genSaltSync(10);
             const password = req.body.password;
             const user = new User_1.User({
+                login: req.body.login,
                 email: req.body.email,
                 password: bcryptjs_1.default.hashSync(password, salt),
             });
             try {
                 yield user.save();
-                res.status(201).json(user);
+                console.log(user);
+                res.status(201).json({ user: user });
             }
             catch (e) {
                 errorHandler_1.errorHandler(res, e);

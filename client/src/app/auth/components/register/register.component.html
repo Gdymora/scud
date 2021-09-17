@@ -7,10 +7,10 @@
             <form [formGroup]="form" (ngSubmit)="register()" class="my-form">
                 <mat-form-field class="full-width">
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name" name="username" formControlName="username" />
-                    <div *ngIf="form.get('username')?.touched && form.get('username')?.invalid" class="validation">
-                        <small *ngIf="form.get('username')?.errors?.required">Enter Name</small>
-                        <small *ngIf="form.get('username')?.errors?.username">Enter valid Name</small>
+                    <input matInput placeholder="Name" name="login" formControlName="login" />
+                    <div *ngIf="form.get('login')?.touched && form.get('login')?.invalid" class="validation">
+                        <small *ngIf="form.get('login')?.errors?.required">Enter Name</small>
+                        <small *ngIf="form.get('login')?.errors?.login">Enter valid Name</small>
                     </div>
                 </mat-form-field>
 

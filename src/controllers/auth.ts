@@ -43,25 +43,37 @@ module.exports.login = async function (req, res) {
 
 module.exports.register = async function (req, res) {
   // email password
-  const candidate = await User.findOne({ email: req.body.email });
 
-  if (candidate) {
+
+  const candidate = await User.find({
+    $or:
+      [{ email: req.body.email }, { login: req.body.login }]
+  });
+  if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
     // Пользователь существует, нужно отправить ошибку
     res.status(409).json({
       message: "Такой email уже занят. Попробуйте другой.",
+    });
+  }
+  else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
+    // Пользователь существует, нужно отправить ошибку
+    res.status(409).json({
+      message: "Такой login уже занят. Попробуйте другой.",
     });
   } else {
     // Нужно создать пользователя
     const salt = bcrypt.genSaltSync(10);
     const password = req.body.password;
     const user = new User({
+      login: req.body.login,
       email: req.body.email,
       password: bcrypt.hashSync(password, salt),
     });
 
     try {
       await user.save();
-      res.status(201).json(user);
+      console.log(user)
+      res.status(201).json({ user: user });
     } catch (e) {
       errorHandler(res, e);
     }
