@@ -41,10 +41,12 @@ db.once("open", function () {
 app.use("/uploads", express.static("uploads"));
 app.use(passport.initialize());
 require("./middleware/passport")(passport);
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 app.use(express.json());
 app.use(require("morgan")("dev"));
 //app.use(require("morgan")("combined", { stream: logger.stream }))  //added here
+
+app.use(express.json({ limit: '50mb' }))
 app.use(require("cors")());
 
 app.use("/api/auth", authRoutes);

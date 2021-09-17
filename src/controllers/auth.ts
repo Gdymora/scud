@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User";
 const keys = require("../config/keys");
-import { errorHandler } from "../utils/errorHandler";
 
 module.exports.login = async function (req, res) {
   const candidate = await User.findOne({ email: req.body.email });
@@ -51,16 +50,21 @@ module.exports.register = async function (req, res) {
   });
   if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
     // Пользователь существует, нужно отправить ошибку
+    console.log('eml', candidate.filter(cand => cand.email == req.body.email))
     res.status(409).json({
       message: "Такой email уже занят. Попробуйте другой.",
     });
   }
   else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
     // Пользователь существует, нужно отправить ошибку
+    console.log('log', candidate.filter(cand => cand.login == req.body.login))
+
     res.status(409).json({
       message: "Такой login уже занят. Попробуйте другой.",
     });
   } else {
+    console.log("ddd")
+
     // Нужно создать пользователя
     const salt = bcrypt.genSaltSync(10);
     const password = req.body.password;
@@ -75,7 +79,7 @@ module.exports.register = async function (req, res) {
       console.log(user)
       res.status(201).json({ user: user });
     } catch (e) {
-      errorHandler(res, e);
+
     }
   }
 };

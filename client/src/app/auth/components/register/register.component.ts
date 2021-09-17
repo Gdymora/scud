@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.services';
 import { registerAction } from '../../store/actions';
 
 import { isSubmittingSelector } from '../../store/selectors';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
 @Component({
   selector: 'app-register',
@@ -39,17 +40,20 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
-    console.log(this.isSubmitting$)
   }
 
 
   register() {
-    this.store.dispatch(registerAction(this.form.value))
+    const request: RegisterRequestInterface = this.form.value
+
+    this.store.dispatch(registerAction({ request }))
     if (this.form.invalid) {
       return
     }
-    this.authS.register(this.form.value).subscribe(
-      currentUser => { console.log(currentUser) })
+   /*  this.authS.register(this.form.value).subscribe(
+      currentUser => { console.log(currentUser) },
+      error => { console.log(error) }
+    ) */
 
     this.submitted = true
 

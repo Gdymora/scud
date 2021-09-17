@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SharedModule } from './shared/shared.module'
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { AuthModule } from './auth/auth.module'
-import { environment } from '../environments/environment'; // 
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects'; // 
+import { RegisterEffect } from './auth/store/effects/register.effect';
 
 @NgModule({
   declarations: [AppComponent, MainLayoutComponent],
@@ -26,10 +28,11 @@ import { environment } from '../environments/environment'; //
     AuthModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, 
-      logOnly: environment.production, 
-      autoPause: true, 
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
     }),
+    EffectsModule.forRoot([RegisterEffect]),
   ],
   providers: [
     {

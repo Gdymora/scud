@@ -16,7 +16,6 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const User_1 = require("../models/User");
 const keys = require("../config/keys");
-const errorHandler_1 = require("../utils/errorHandler");
 module.exports.login = function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const candidate = yield User_1.User.findOne({ email: req.body.email });
@@ -56,17 +55,20 @@ module.exports.register = function (req, res) {
         });
         if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
             // Пользователь существует, нужно отправить ошибку
+            console.log('eml', candidate.filter(cand => cand.email == req.body.email));
             res.status(409).json({
                 message: "Такой email уже занят. Попробуйте другой.",
             });
         }
         else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
             // Пользователь существует, нужно отправить ошибку
+            console.log('log', candidate.filter(cand => cand.login == req.body.login));
             res.status(409).json({
                 message: "Такой login уже занят. Попробуйте другой.",
             });
         }
         else {
+            console.log("ddd");
             // Нужно создать пользователя
             const salt = bcryptjs_1.default.genSaltSync(10);
             const password = req.body.password;
@@ -81,7 +83,6 @@ module.exports.register = function (req, res) {
                 res.status(201).json({ user: user });
             }
             catch (e) {
-                errorHandler_1.errorHandler(res, e);
             }
         }
     });
