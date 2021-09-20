@@ -32,7 +32,7 @@ import { RegisterEffect } from './auth/store/effects/register.effect';
       logOnly: environment.production,
       autoPause: true,
     }),
-    EffectsModule.forRoot([RegisterEffect])
+    EffectsModule.forRoot()
   ],
   providers: [
     {

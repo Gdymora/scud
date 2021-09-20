@@ -7,14 +7,20 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { StoreModule } from '@ngrx/store'
 import { reducer } from "./store/reducers"
 import { BackendErrorMessagesModule } from "../shared/modules/backendErrorMessages/backendErrorMessages.module"
-import { PersistanceService } from "../shared/services/persistance.service"
+import { PersistanceService } from "../shared/services/persistance.service";
+import { LoginComponent } from './components/login/login.component'
+import { EffectsModule } from "@ngrx/effects"
+import { RegisterEffect } from "./store/effects/register.effect"
+import { LoginEffect } from "./store/effects/login.effect"
 
 const routes: Routes = [
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent }
 ]
 @NgModule({
     declarations: [
-        RegisterComponent
+        RegisterComponent,
+        LoginComponent
     ],
     imports: [
         CommonModule,
@@ -23,9 +29,10 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('auth', reducer),
+        EffectsModule.forFeature([RegisterEffect, LoginEffect]),
         BackendErrorMessagesModule
     ],
-    providers:[PersistanceService]
+    providers: [PersistanceService]
 
 })
 

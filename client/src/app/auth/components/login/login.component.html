@@ -1,0 +1,52 @@
+<div align="center">
+    <mat-toolbar>
+        <span>LOGIN</span>
+    </mat-toolbar>
+    <mat-card class="my-card">
+        <mat-card-content>
+            <!--          <li *ngFor="let errorMessage of backendErrors$ | async">
+                {{ errorMessage.msg }}444
+            </li> -->
+            <!-- {{backendErrors$.msg | async}}77 -->
+            <mc-backend-error-messages *ngIf="backendErrors$ | async" [backendErrors]="backendErrors$ | async">
+
+            </mc-backend-error-messages>
+
+            <form [formGroup]="form" (ngSubmit)="login()" class="my-form">
+
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" name="email" formControlName="email" />
+                    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="validation">
+                        <small *ngIf="form.get('email')?.errors?.required">Enter Email</small>
+                        <small *ngIf="form.get('email')?.errors?.email">Enter valid Email</small>
+                    </div>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <div *ngIf="
+                form.get('password')?.touched && form.get('password')?.invalid
+              " class="validation">
+                        <!--  <small *ngIf="form.get('password')?.errors?.required">Enter Password</small>
+                      <small *ngIf="form.get('password')?.errors?.minlength">Password must be at least
+                          {{form.get('password').errors.minlength.requiredLength}}characters. Now he
+                          {{form.get('password').errors.minlength.actualLength}}</small> -->
+                    </div>
+                </mat-form-field>
+                <mat-card-actions class="text-right">
+                    <!-- [disabled]="isSubmitting$ | async" -->
+                    <button mat-raised-button color="primary">
+                        Login
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    <p>admin@teedex.net</p>
+</div>{{isSubmitting$|async }}

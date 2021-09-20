@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error) => {
         if (error.status === 401) {
           this.auth.logout()
-          this.router.navigate(['/admin', 'login'])
+          this.router.navigate(['login'])
         }
         return throwError(error)
       })

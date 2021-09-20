@@ -20,4 +20,11 @@ export class AuthService {
             .pipe(map((response: AuthResponseInterface) => response.user))
     }
 
+    login(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
+        console.log(data)
+        return this.http
+            .post<AuthResponseInterface>(environment.url + '/auth/login', data)
+            .pipe(map((response: AuthResponseInterface) => response.user))
+    }
+
 }

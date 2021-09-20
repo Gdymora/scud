@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store'
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 import { AuthService } from '../../services/auth.services';
-import { registerAction } from '../../store/actions/register.actions';
-
+import { loginAction } from '../../store/actions/login.actions.';
 import { isSubmittingSelector, validationErrorSelector } from '../../store/selectors';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
   hide = true
   form: FormGroup
   submitted: boolean = false
@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
     private authS: AuthService
   ) {
     this.form = new FormGroup({
-      login: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
     })
@@ -44,18 +43,19 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  register() {
+  login() {
     const request: RegisterRequestInterface = this.form.value
 
-    this.store.dispatch(registerAction({ request }))
+    this.store.dispatch(loginAction({ request }))
     if (this.form.invalid) {
       return
     }
-    /*  this.authS.register(this.form.value).subscribe(
+    
+   /*  this.authS.login(this.form.value).subscribe(
        currentUser => { console.log(currentUser) },
        error => { console.log(error) }
-     ) */
-
+     ) 
+ */
     this.submitted = true
 
   }
