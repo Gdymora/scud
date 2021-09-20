@@ -19,6 +19,7 @@ const keys = require("../config/keys");
 module.exports.login = function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const candidate = yield User_1.User.findOne({ email: req.body.email });
+        console.log(candidate);
         if (candidate) {
             // Проверка пароля, пользователь существует
             const passwordResult = bcryptjs_1.default.compareSync(req.body.password, candidate.password);
@@ -40,14 +41,14 @@ module.exports.login = function (req, res) {
             else {
                 // Пароли не совпали
                 res.status(401).json({
-                    message: "Пароли не совпадают. Попробуйте снова.",
+                    errors: { 0: { value: '', msg: 'Пароли не совпадают. Попробуйте снова.', param: 'email', location: 'body' } }
                 });
             }
         }
         else {
             // Пользователя нет, ошибка
             res.status(404).json({
-                message: "Пользователь с таким email не найден.",
+                errors: { 0: { value: '', msg: 'Пользователь с таким email не найден.', param: 'email', location: 'body' } }
             });
         }
     });
