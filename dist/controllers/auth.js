@@ -24,12 +24,17 @@ module.exports.login = function (req, res) {
             const passwordResult = bcryptjs_1.default.compareSync(req.body.password, candidate.password);
             if (passwordResult) {
                 // Генерация токена, пароли совпали
-                const token = jsonwebtoken_1.default.sign({
+                const tokenModel = tokenGenerate(candidate);
+                /* jwt.sign(
+                  {
                     email: candidate.email,
                     userId: candidate._id,
-                }, keys.jwt, { expiresIn: 60 * 60 });
+                  },
+                  keys.jwt,
+                  { expiresIn: 60 * 60 }
+                ); */
                 res.status(200).json({
-                    token: `Bearer ${token}`,
+                    user: { access_token: `Bearer ${tokenModel.token}`, "expires_in": tokenModel.expires_in }
                 });
             }
             else {
@@ -56,18 +61,17 @@ module.exports.register = function (req, res) {
             // Пользователь существует, нужно отправить ошибку
             console.log('eml', candidate.filter(cand => cand.email == req.body.email));
             res.status(409).json({
-                message: "Такой email уже занят. Попробуйте другой.",
+                errors: { 0: { value: '', msg: 'Такой email уже занят. Попробуйте другой.', param: 'email', location: 'body' } }
             });
         }
         else if (candidate.filter(cand => cand.login == req.body.login).length > 0) {
             // Пользователь существует, нужно отправить ошибку
             console.log('log', candidate.filter(cand => cand.login == req.body.login));
             res.status(409).json({
-                message: "Такой login уже занят. Попробуйте другой.",
+                errors: { 0: { value: '', msg: 'Такой login уже занят. Попробуйте другой.', param: 'login', location: 'body' } }
             });
         }
         else {
-            console.log("ddd");
             // Нужно создать пользователя
             const salt = bcryptjs_1.default.genSaltSync(10);
             const password = req.body.password;
@@ -79,11 +83,23 @@ module.exports.register = function (req, res) {
             try {
                 yield user.save();
                 console.log(user);
-                res.status(201).json({ user: user });
+                const tokenModel = tokenGenerate(user);
+                console.log(`Bearer ${tokenModel.token}`);
+                res.status(200).json({
+                    user: { access_token: `Bearer ${tokenModel.token}`, "expires_in": tokenModel.expires_in }
+                });
             }
             catch (e) {
             }
         }
     });
 };
+function tokenGenerate(user) {
+    const expiresIn = 60 * 60;
+    const token = jsonwebtoken_1.default.sign({
+        email: user.email,
+        userId: user._id,
+    }, keys.jwt, { expiresIn: expiresIn });
+    return { token: token, expires_in: expiresIn };
+}
 //# sourceMappingURL=auth.js.map

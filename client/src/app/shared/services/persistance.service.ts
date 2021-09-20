@@ -1,35 +1,18 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { User } from '../interfaces'
-import { environment } from 'src/environments/environment'
-import { Observable } from 'rxjs'
-import { tap } from 'rxjs/operators'
 
-/*firebase.google.com */
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthService {
-  constructor(private http: HttpClient) { }
+@Injectable()
+export class PersistanceService {
 
-  login(user: User): Observable<User> {
-    return this.http
-      .post<User>(`${environment.url}/user/login`, user)
-      .pipe(tap(this.setToken))
-  }
-
-  private setToken(response: any): any {
+  set(response: any): void {
     if (response) {
       const expData = new Date(
         new Date().getTime() + +response.expires_in * 1000
       )
-      try {
-        console.log(response.user.expire, ' ', expData)
+      try {       
         localStorage.setItem('fb-token-exp', expData.toString())
         localStorage.setItem('fb-token', response.access_token)
       } catch (e) {
         console.error('Error saving data from localStorage', e)
-        return null
       }
 
     } else {
@@ -58,10 +41,6 @@ export class AuthService {
   }
 
   logout() {
-    this.setToken(null)
-  }
-
-  isAuthenticated() {
-    return !!this.token
+    this.set(null)
   }
 }

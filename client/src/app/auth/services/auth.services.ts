@@ -19,4 +19,5 @@ export class AuthService {
             .post<AuthResponseInterface>(environment.url + '/auth/register', data)
             .pipe(map((response: AuthResponseInterface) => response.user))
     }
+
 }

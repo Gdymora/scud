@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { StoreModule } from '@ngrx/store'
 import { reducer } from "./store/reducers"
 import { BackendErrorMessagesModule } from "../shared/modules/backendErrorMessages/backendErrorMessages.module"
+import { PersistanceService } from "../shared/services/persistance.service"
 
 const routes: Routes = [
     { path: 'register', component: RegisterComponent }
@@ -24,6 +25,7 @@ const routes: Routes = [
         StoreModule.forFeature('auth', reducer),
         BackendErrorMessagesModule
     ],
+    providers:[PersistanceService]
 
 })
 
