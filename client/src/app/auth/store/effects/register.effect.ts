@@ -32,8 +32,8 @@ export class RegisterEffect {
                         return registerSuccessAction({ currentUser: currentUser })
                     }),
                     catchError((errorResponse: HttpErrorResponse) => {
-                        console.log('er', errorResponse)
-                        return of(registerFailureAction({ errors: errorResponse.error.message }))
+                        console.log('er', errorResponse.error)
+                        return of(registerFailureAction({ errors: errorResponse.error.errors}))
                     })
                 )
             })

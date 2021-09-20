@@ -4,6 +4,15 @@
     </mat-toolbar>
     <mat-card class="my-card">
         <mat-card-content>
+   <!--          <li *ngFor="let errorMessage of backendErrors$ | async">
+                {{ errorMessage.msg }}444
+            </li> -->
+            <!-- {{backendErrors$.msg | async}}77 -->
+            <mc-backend-error-messages *ngIf="backendErrors$ | async" 
+            [backendErrors]="backendErrors$ | async">
+
+            </mc-backend-error-messages>
+
             <form [formGroup]="form" (ngSubmit)="register()" class="my-form">
                 <mat-form-field class="full-width">
                     <mat-label>Name</mat-label>
@@ -41,7 +50,7 @@
                 </mat-form-field>
                 <mat-card-actions class="text-right">
                     <!-- [disabled]="isSubmitting$ | async" -->
-                    <button  mat-raised-button color="primary">
+                    <button mat-raised-button color="primary">
                         Register
                     </button>
                 </mat-card-actions>

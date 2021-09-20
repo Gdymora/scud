@@ -1,14 +1,13 @@
-import { HashLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs';
-import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 import { AuthService } from '../../services/auth.services';
 import { registerAction } from '../../store/actions';
 
-import { isSubmittingSelector } from '../../store/selectors';
+import { isSubmittingSelector, validationErrorSelector } from '../../store/selectors';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
 @Component({
@@ -21,6 +20,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup
   submitted: boolean = false
   isSubmitting$: Observable<boolean>
+  backendErrors$: Observable<BackendErrorsInterface | null>
 
   constructor(
     private router: Router,
@@ -40,13 +40,14 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
+    this.backendErrors$ = this.store.pipe(select(validationErrorSelector))
   }
 
 
   register() {
     const request: RegisterRequestInterface = this.form.value
 
- this.store.dispatch(registerAction({ request }))
+    this.store.dispatch(registerAction({ request }))
     if (this.form.invalid) {
       return
     }
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
        currentUser => { console.log(currentUser) },
        error => { console.log(error) }
      ) */
-   
+
     this.submitted = true
 
   }

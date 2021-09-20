@@ -9,6 +9,12 @@ export const isSubmittingSelector = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.isSubmitting
 )
+
+export const validationErrorSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.validdationErrors
+)
+
 /* Селекторы - это чистые функции, используемые для получения 
 фрагментов состояния хранилища. @ ngrx/store предоставляет 
 несколько вспомогательных функций для оптимизации этого выбора. 

@@ -6,8 +6,7 @@ import { RegisterComponent } from "./components/register/register.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { StoreModule } from '@ngrx/store'
 import { reducer } from "./store/reducers"
- 
-
+import { BackendErrorMessagesModule } from "../shared/modules/backendErrorMessages/backendErrorMessages.module"
 
 const routes: Routes = [
     { path: 'register', component: RegisterComponent }
@@ -22,7 +21,8 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('auth', reducer)   
+        StoreModule.forFeature('auth', reducer),
+        BackendErrorMessagesModule
     ],
 
 })
