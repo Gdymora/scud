@@ -1,0 +1,38 @@
+article {
+    display: flex;
+    color: #fff;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    height: 64px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+img {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #fff;
+}
+
+.highlighted {
+    background-color: #fff;
+    color: #0092ed;
+}
+
+.highlighted > button {
+    color: #0092ed;
+}
+
+.highlighted > img {
+    border-color: #0092ed;
+}

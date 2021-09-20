@@ -1,0 +1,7 @@
+<body>
+    <button (click)="create()">Create</button>
+    <app-user-tile *ngFor="let user of users" [vm]="user" [active]="selectedUser?.id === user.id"
+        (selected)="selectUser(user)">
+    </app-user-tile>
+    <app-user-form *ngIf="selectedUser" [vm]="selectedUser" (save)="save($event)"></app-user-form>
+</body>

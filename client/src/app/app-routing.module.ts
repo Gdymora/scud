@@ -17,10 +17,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/user/user.module').then(m => m.UserModule)
+  },
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,0 +1,38 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    margin: 10px;
+}
+
+form > * {
+    margin: 8px 0;
+}
+
+img {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+input {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    padding: 8px;
+    color: #fff;
+}
+
+button {
+    border-radius: 10px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: #0092ed;
+    width: 150px;
+    height: 32px;
+    cursor: pointer;
+}
