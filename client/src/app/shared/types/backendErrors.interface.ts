@@ -1,3 +1,8 @@
 export interface BackendErrorsInterface {
-  [key: string]: string[]
+  [key: string]: {
+    value: null,
+    msg: string,
+    param: string,
+    location: string,
+  }
 }
