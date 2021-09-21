@@ -8,9 +8,9 @@
     <button mat-icon-button class="example-icon" [routerLink]="['/admin', 'user']" [routerLinkActive]="['active']">
       <mat-icon>dashboard</mat-icon>
     </button>
-    <button mat-button [matMenuTriggerFor]="aboveMenu">Налаштування</button>
+    <button mat-button [matMenuTriggerFor]="aboveMenu">Налаштування {{(currentUser$ | async).login}}</button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <button mat-menu-item>вийти</button>
+      <button mat-menu-item (click)="logout()">вийти</button>
     </mat-menu>
   </ng-container>
 

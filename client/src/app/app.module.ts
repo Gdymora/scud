@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects'; // 
 import { LayoutModule } from './ui/theme/layout';
 import { HeaderModule } from './ui/theme/layout/components/header/header.module';
+import { PersistanceService } from './shared/services/persistance.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,7 @@ import { HeaderModule } from './ui/theme/layout/components/header/header.module'
       multi: true,
       useClass: AuthInterceptor,
     },
+    PersistanceService
   ],
   bootstrap: [AppComponent],
 })

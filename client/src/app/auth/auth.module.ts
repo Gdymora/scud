@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component'
 import { EffectsModule } from "@ngrx/effects"
 import { RegisterEffect } from "./store/effects/register.effect"
 import { LoginEffect } from "./store/effects/login.effect"
+import { GetCurrentUserEffect } from "./store/effects/getCurrentUser.effect"
 
 const routes: Routes = [
     { path: 'register', component: RegisterComponent },
@@ -30,7 +31,7 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('auth', reducer),
-        EffectsModule.forFeature([RegisterEffect, LoginEffect]),
+        EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
         BackendErrorMessagesModule
     ],
     providers: [PersistanceService]

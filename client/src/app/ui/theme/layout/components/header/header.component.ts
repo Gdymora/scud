@@ -7,6 +7,8 @@ import {
   isAnonymousSelector,
   currentUserSelector
 } from 'src/app/auth/store/selectors'
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,10 @@ export class HeaderComponent implements OnInit {
   isAnonymous$: Observable<boolean>
   currentUser$: Observable<CurrentUserInterface | null>
 
-  constructor(private store: Store) { }
+  constructor(private store: Store,
+    private persistanceService: PersistanceService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
@@ -27,8 +32,8 @@ export class HeaderComponent implements OnInit {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
 
-
-  isAuthenticated() {
-    return true
+  logout() {
+    this.persistanceService.logout();
+    this.router.navigate(['auth/login'])
   }
 }

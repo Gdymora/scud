@@ -6,7 +6,7 @@ import {
     registerAction,
     registerSuccessAction,
     registerFailureAction
-} from '../actions/register.actions'
+} from '../actions/register.action'
 
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface'
 import { of } from 'rxjs'

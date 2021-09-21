@@ -2,11 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import passport from "passport";
 const authRoutes = require("./routes/auth");
+const accountRoutes = require('./routes/account')
 //const logger = require('./logger/logger')
 const morgan = require("morgan");
 require("dotenv").config();
 
-const keys = require("./config/keys");
+
 const config = require("./config/db");
 
 /* 
@@ -50,6 +51,8 @@ app.use(require("morgan")("dev"));
 app.use(express.json({ limit: '50mb' }))
 app.use(require("cors")());
 
+
 app.use("/api/auth", authRoutes);
+app.use('/api/account', accountRoutes);
 
 module.exports = app;

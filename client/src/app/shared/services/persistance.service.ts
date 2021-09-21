@@ -8,7 +8,7 @@ export class PersistanceService {
       const expData = new Date(
         new Date().getTime() + +response.expires_in * 1000
       )
-      try {       
+      try {
         localStorage.setItem('fb-token-exp', expData.toString())
         localStorage.setItem('fb-token', response.access_token)
       } catch (e) {
@@ -20,7 +20,7 @@ export class PersistanceService {
     }
   }
 
-  get token(): any {
+  get(key: string): any {
     const expDate = new Date(localStorage.getItem('fb-token-exp') || '{}')
 
     const isSameTime = (a: Date, b: Date) => {
@@ -32,15 +32,18 @@ export class PersistanceService {
       return null
     }
     try {
-      return localStorage.getItem('fb-token')
+      return localStorage.getItem(key)
     } catch (e) {
       console.error('Error getting data from localStorage', e)
       return null
     }
-
   }
-
+ 
   logout() {
     this.set(null)
+  }
+
+  isAuthenticated(key: string) {
+    return !!this.get(key)
   }
 }
