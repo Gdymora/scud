@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { MainPageComponent } from './main-page/main-page.component'
-import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
+import { LayoutComponent } from './ui/theme/layout'
+
 
 const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
+    component: LayoutComponent,
     children: [
       { path: '', redirectTo: '/', pathMatch: 'full' },
-      { path: '', component: MainPageComponent },
+      {
+        path: 'admin',
+        loadChildren: () => import('src/app/admin/user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('src/app/auth/auth.module').then(m => m.AuthModule)
+      },
     ],
-  },
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/user/user.module').then(m => m.UserModule)
   },
 ]
 

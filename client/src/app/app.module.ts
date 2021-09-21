@@ -6,20 +6,22 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SharedModule } from './shared/shared.module'
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { AuthModule } from './auth/auth.module'
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects'; // 
-import { RegisterEffect } from './auth/store/effects/register.effect';
+import { LayoutModule } from './ui/theme/layout';
+import { HeaderModule } from './ui/theme/layout/components/header/header.module';
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
+    HeaderModule,
+    LayoutModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -32,6 +34,7 @@ import { RegisterEffect } from './auth/store/effects/register.effect';
       logOnly: environment.production,
       autoPause: true,
     }),
+
     EffectsModule.forRoot()
   ],
   providers: [

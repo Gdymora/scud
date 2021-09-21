@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     const request: RegisterRequestInterface = this.form.value
 
     this.store.dispatch(loginAction({ request }))
+    
     if (this.form.invalid) {
       return
     }

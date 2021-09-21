@@ -1,0 +1,17 @@
+@import 'src/stylesheets/utils';
+:host {
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+}
+.header-logo {
+  text-decoration: none;
+}
+
+.header-brand {
+  color: white;
+  text-transform: uppercase;
+}
+
+.header-spacer {
+  flex-grow: 1;
+}

@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <a class="header-logo" routerLink="/">
+    <span class="header-brand">SCUD</span>
+  </a>
+  <span class="header-spacer"></span>
+
+  <ng-container *ngIf="isLoggedIn$ | async">
+    <button mat-icon-button class="example-icon" [routerLink]="['/admin', 'user']" [routerLinkActive]="['active']">
+      <mat-icon>dashboard</mat-icon>
+    </button>
+    <button mat-button [matMenuTriggerFor]="aboveMenu">Налаштування</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-menu-item>вийти</button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container *ngIf="isAnonymous$ | async">
+    <button mat-button [routerLink]="['/auth', 'login']" [routerLinkActive]="['active']">
+      увійти
+    </button>
+    <button mat-button [routerLink]="['/auth', 'register']" [routerLinkActive]="['active']">
+      реєстрація
+    </button>
+  </ng-container>
+</mat-toolbar>

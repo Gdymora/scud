@@ -35,7 +35,7 @@ export class LoginEffect {
                 /* если произошло registerSuccessAction то испольняем  tap()*/
                 ofType(loginSuccessAction),
                 tap(() => {
-                    this.router.navigateByUrl('/')/* отправляем пользователя на домашнюю страницу */
+                    this.router.navigateByUrl('/admin/user')/* отправляем пользователя на домашнюю страницу */
                 })
             ),
         { dispatch: false }

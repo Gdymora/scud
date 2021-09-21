@@ -1,0 +1,6 @@
+@import "src/stylesheets/utils";
+:host {
+    /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 1 0 auto;
+}
+

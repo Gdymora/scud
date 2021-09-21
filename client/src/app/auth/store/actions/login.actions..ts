@@ -3,10 +3,11 @@ import { ActionTypes } from 'src/app/auth/store/actionTypes'
 import { RegisterRequestInterface } from 'src/app/auth/types/registerRequest.interface'
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface'
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface'
+import { LoginRequestInterface } from '../../types/loginRequest.interface'
 
 export const loginAction = createAction(
   ActionTypes.LOGIN,
-  props<{ request: RegisterRequestInterface }>()
+  props<{ request: LoginRequestInterface }>()
 )
 
 export const loginSuccessAction = createAction(
