@@ -4,6 +4,7 @@ interface UserInterface extends mongoose.Document {
   login: string;
   email: string;
   password: string;
+  role_id: string
 }
 
 const userSchema = new mongoose.Schema({
@@ -18,6 +19,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   password: {
+    type: String,
+    required: true,
+  },
+  role_id: {
     type: String,
     required: true,
   },
