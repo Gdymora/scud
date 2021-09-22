@@ -34,4 +34,9 @@ export class RuleService {
             )
     }
 
+    delete(id: string): Observable<{}> {
+        const fulUrl = environment.url + `/rule/${id}`
+        return this.http.delete<{}>(fulUrl)
+    }
+
 }
