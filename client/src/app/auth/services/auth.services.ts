@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { response } from "express";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { CurrentUserInterface } from "src/app/shared/types/currentUser.interface";
