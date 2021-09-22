@@ -15,5 +15,5 @@ const checkRules = (req, res, next) => {
     }
     next();
 };
- 
-const registration = module.exports = {validationBodyRules, checkRules};
+
+const registration = module.exports = { validationBodyRules, checkRules };

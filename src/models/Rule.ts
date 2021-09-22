@@ -23,5 +23,5 @@ const cardSchema = new mongoose.Schema({
     },
 });
 
-const Rule = mongoose.model<RuleInterface>("rules", cardSchema);
+const Rule = mongoose.model<RuleInterface>("Rule", cardSchema);
 export { Rule };

@@ -6,20 +6,23 @@ status '1' => 'Активная','2' => 'Блокированная','3' => 'У�
 import mongoose from "mongoose";
 
 import { CardInterface } from '../type/interface'
-
+// Get the Schema constructor
+const Schema = mongoose.Schema
 const cardSchema = new mongoose.Schema({
-   
+
     number: {
         type: Number,
         required: true,
         unique: true,
     },
-    card_user_id: {
-        type: Number,
-        required: true,
+    users_card_id: {
+        type: Schema.Types.ObjectId,
+        ref: "UsersCard",
+        required: true
     },
     rule: {
-        type: Number,
+        type: Schema.Types.ObjectId,
+        ref: "Rule",
         required: true,
     },
     status: {
@@ -28,5 +31,5 @@ const cardSchema = new mongoose.Schema({
     },
 });
 
-const Card = mongoose.model<CardInterface>("cards", cardSchema);
+const Card = mongoose.model<CardInterface>("Cards", cardSchema);
 export { Card };

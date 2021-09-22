@@ -41,7 +41,6 @@ module.exports.register = async function (req, res) {
 
   if (candidate.filter(cand => cand.email == req.body.email).length > 0) {
     // Пользователь существует, нужно отправить ошибку
-    console.log('eml', candidate.filter(cand => cand.email == req.body.email))
     res.status(409).json({
       errors: { 0: { value: '', msg: 'Такой email уже занят. Попробуйте другой.', param: 'email', location: 'body' } }
     });

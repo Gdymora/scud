@@ -8,7 +8,7 @@ interface UsersInterface extends mongoose.Document {
     enterprise: string;
 }
 
-const userSchema = new mongoose.Schema({
+const userCardSchema = new mongoose.Schema({
     dtime_registration: {
         type: Date,
         default: Date.now
@@ -31,5 +31,5 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-const Users = mongoose.model<UsersInterface>("users", userSchema);
-export { Users };
+const UsersCard = mongoose.model<UsersInterface>("UsersCard", userCardSchema);
+export { UsersCard };
