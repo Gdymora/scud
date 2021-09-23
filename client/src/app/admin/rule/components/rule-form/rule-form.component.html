@@ -1,0 +1,32 @@
+<p>Rule Form!</p>
+<form [formGroup]="form" (ngSubmit)="onSave()" class="my-form">
+
+    <mat-form-field class="full-width">
+        <mat-label>Rule name</mat-label>
+        <input matInput placeholder="Rule name" name="rule_name" formControlName="rule_name" />
+        <div *ngIf="form.get('rule_name')?.touched && form.get('rule_name')?.invalid" class="validation">
+            <small *ngIf="form.get('rule_name')?.errors?.required">Enter Email</small>
+            <small *ngIf="form.get('rule_name')?.errors?.rule_name">Enter valid Email</small>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-select placeholder="Day" name="day" formControlName="day" [(value)]="selectedDays" multiple>
+            <mat-option *ngFor="let day of dayList; let i = index;" 
+            [value]="[i, first.value, second.value]">
+                {{day}} {{first.value}} {{second.value}}
+               <input value = "08:00" type="time" #first> <input value = "23:00" type="time" #second>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-card-actions class="text-right">
+
+        <!-- [disabled]="isSubmitting$ | async" -->
+
+        <button mat-raised-button color="primary">
+            Create
+        </button>
+    </mat-card-actions>
+</form>

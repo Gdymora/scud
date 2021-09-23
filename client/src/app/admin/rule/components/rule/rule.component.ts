@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, Subscription } from 'rxjs';
@@ -6,8 +7,10 @@ import { map } from 'rxjs/operators';
 import { currentUserSelector } from 'src/app/auth/store/selectors';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { RuleInterface } from 'src/app/shared/types/rule.Interface';
-import { getRuleAction } from './store/actions/getRule.action';
-import { errorSelector, isLoadingSelector, ruleSelector } from './store/selectors';
+import { getRuleForm } from '../../shared/classes/getRule.form';
+import { Rule } from '../../shared/model/rule';
+import { getRuleAction } from '../../store/actions/getRule.action';
+import { errorSelector, isLoadingSelector, ruleSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-rule',
@@ -16,6 +19,9 @@ import { errorSelector, isLoadingSelector, ruleSelector } from './store/selector
 })
 export class RuleComponent implements OnInit, OnDestroy {
   id: string
+  rules: Rule[];
+  selectedRule: FormGroup;
+
   rule: RuleInterface | null
   ruleSubscription: Subscription
   isLoAding$: Observable<boolean>
@@ -68,4 +74,18 @@ export class RuleComponent implements OnInit, OnDestroy {
   ruleData(): void {
     this.store.dispatch(getRuleAction({ id: this.id }))
   }
+
+
+  selectRule(rule: Rule) {
+    this.selectedRule = getRuleForm();
+  }
+
+  create() {
+    this.selectedRule = getRuleForm();
+  }
+
+  save(rule: FormGroup) {
+    console.log("rule", rule)
+  }
+
 }

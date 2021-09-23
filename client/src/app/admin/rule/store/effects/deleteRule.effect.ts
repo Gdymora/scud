@@ -6,8 +6,10 @@ import { deleteRuleAction, deleteRuleFailureAction, deleteRuleSuccessAction } fr
 import { RuleService as SharedRuleService } from 'src/app/shared/services/rule.service'
 import { RuleInterface } from 'src/app/shared/types/rule.Interface'
 import { Router } from "@angular/router"
+
 @Injectable()
-export class GetDeleteEffect {
+
+export class DeleteEffect {
     getRule$ = createEffect(() =>
         this.actions$.pipe(
             ofType(deleteRuleAction),
@@ -28,7 +30,7 @@ export class GetDeleteEffect {
     redirectRuleDelete$ = createEffect(
         () =>
             this.actions$.pipe(
-                /* если произошло registerSuccessAction то испольняем  tap()*/
+                /* если произошло deleteRuleSuccessAction то испольняем  tap()*/
                 ofType(deleteRuleSuccessAction),
                 tap(() => {
                     this.router.navigateByUrl('/admin/user')/* отправляем пользователя на домашнюю страницу */

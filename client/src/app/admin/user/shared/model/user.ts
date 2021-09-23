@@ -1,4 +1,5 @@
 export class User {
+    
     static createBlank(): User {
         return new User();
     }
