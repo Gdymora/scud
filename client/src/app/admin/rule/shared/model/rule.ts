@@ -1,4 +1,4 @@
-import { RuleInterfaceModel } from "src/app/shared/types/rule.Interface";
+import { RuleInterfaceModel } from "src/app/shared/types/rule.interface";
 
 export class Rule implements RuleInterfaceModel {
 

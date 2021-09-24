@@ -1,4 +1,4 @@
-import { RuleInterface } from "src/app/shared/types/rule.Interface";
+import { RuleInterface } from "src/app/shared/types/rule.interface";
 
 export interface RuleStateInterface {
     isLoading: boolean

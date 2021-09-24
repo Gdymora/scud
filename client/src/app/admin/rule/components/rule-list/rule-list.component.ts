@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RuleInterface } from 'src/app/shared/types/rule.Interface';
+import { RuleInterface } from 'src/app/shared/types/rule.interface';
 
 @Component({
   selector: 'app-rule-list',

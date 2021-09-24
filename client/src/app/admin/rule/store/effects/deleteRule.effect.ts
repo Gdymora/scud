@@ -4,7 +4,7 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators'
 import { of } from 'rxjs'
 import { deleteRuleAction, deleteRuleFailureAction, deleteRuleSuccessAction } from '../actions/deleteRule.action'
 import { RuleService as SharedRuleService } from 'src/app/shared/services/rule.service'
-import { RuleInterface } from 'src/app/shared/types/rule.Interface'
+import { RuleInterface } from 'src/app/shared/types/rule.interface'
 import { Router } from "@angular/router"
 
 @Injectable()
