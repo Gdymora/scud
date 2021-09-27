@@ -25,7 +25,7 @@ module.exports.getAll = async function (req, res) {
 module.exports.getById = async function (req, res) {
 
     try {
-        const rule = await Rule.findOne({_id: req.params.id })
+        const rule = await Rule.findOne({ _id: req.params.id })
         console.log(rule)
         if (rule) {
             res.status(200).json({
@@ -48,7 +48,6 @@ module.exports.getById = async function (req, res) {
 module.exports.create = async function (req, res) {
     try {
         const rule = await new Rule({
-            number: req.body.number,
             rule_name: req.body.rule_name,
             day: req.body.day,
             hour_first: req.body.hour_first,
@@ -56,7 +55,7 @@ module.exports.create = async function (req, res) {
         }).save()
         res.status(201).json(rule)
 
-        
+
     } catch (e) {
         res.status(503).json({
             errors: { 0: { value: '', msg: 'Помилка бази даних.', param: 'card', location: 'body' } }
@@ -79,7 +78,7 @@ module.exports.remove = async function (req, res) {
             res.status(404).json({
                 errors: { 0: { value: '', msg: 'Правило за таким номером не знайдено.', param: 'card', location: 'body' } }
             });
-         }
+        }
 
 
     } catch (e) {
@@ -108,7 +107,7 @@ module.exports.update = async function (req, res) {
             res.status(404).json({
                 errors: { 0: { value: '', msg: 'Правило за таким номером не знайдено.', param: 'card', location: 'body' } }
             });
-         }
+        }
 
     } catch (e) {
         res.status(503).json({

@@ -1,6 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
-
-import { AppStateInterface } from 'src/app/shared/types/appState.interface'
 import { RuleStateInterface } from '../types/ruleState.interface'
 
 export const ruleFeatureSelector = createFeatureSelector<
@@ -19,5 +17,5 @@ export const errorSelector = createSelector(
 /* наші дані */
 export const ruleSelector = createSelector(
   ruleFeatureSelector,
-  (ruleState: RuleStateInterface) => ruleState.data
+  (ruleState: RuleStateInterface) => ruleState.rule
 )

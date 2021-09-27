@@ -8,12 +8,16 @@ import { RuleInterface } from 'src/app/shared/types/rule.interface';
 })
 export class RuleListComponent {
 
-  @Input() vm:RuleInterface;
-
+  @Input() vm: RuleInterface;
+  @Input() dayList: string[]
   @Input() active: boolean;
   @Output() selected: EventEmitter<void> = new EventEmitter<void>();
+  @Output() deleted: EventEmitter<void> = new EventEmitter<void>();
 
   select() {
     this.selected.emit();
+  }
+  delete() {
+    this.deleted.emit();
   }
 }

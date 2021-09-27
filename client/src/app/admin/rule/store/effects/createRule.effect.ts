@@ -35,7 +35,7 @@ export class CreateRuleEffect {
         /* если произошло registerSuccessAction то испольняем  tap()*/
         ofType(createRuleSuccessAction),
         tap(({ rule }) => {
-          this.router.navigate(['/rule', rule.id])/* отправляем пользователя на домашнюю страницу */
+          this.router.navigate(['/rule', rule._id])/* отправляем пользователя на домашнюю страницу */
         })
       ),
     { dispatch: false }

@@ -1,8 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store'
 import { routerNavigationAction } from '@ngrx/router-store'
-import { getRuleAction, getRuleSuccessAction, getRuleFailureAction } from './actions/getRule.action'
+import { CreateRuleStateInterface } from '../types/createRuleState.interface'
+import { createRuleAction, createRuleFailureAction, createRuleSuccessAction } from './actions/createRule.action'
 
-import { RuleStateInterface } from '../types/ruleState.interface'
 /* routerNavigationAction 
 @ngrx/router-store предоставляет пять действий навигации, 
 которые отправляются в определенном порядке. routerReducer обновляет 
@@ -15,39 +15,38 @@ import { RuleStateInterface } from '../types/ruleState.interface'
  маршрутизатор отправит действие ROUTER_NAVIGATION.
 */
 
-const initialState: RuleStateInterface = {  
-  isLoading: false,
-  error: null,
-  rule: null
+const initialState: CreateRuleStateInterface = {
+  isSubmitting: false,
+  validationErrors: null
 }
 
-const ruleReducer = createReducer(
+const createRuleReducer = createReducer(
   initialState,
   on(
-    getRuleAction,
-    (state): RuleStateInterface => ({
+    createRuleAction,
+    (state): CreateRuleStateInterface => ({
       ...state,
-      isLoading: true
+      isSubmitting: true
     })
   ),
   on(
-    getRuleSuccessAction,
-    (state, action): RuleStateInterface => ({
+    createRuleSuccessAction,
+    (state): CreateRuleStateInterface => ({
       ...state,
-      isLoading: false,
-      rule: action.rule
+      isSubmitting: false,
     })
   ),
   on(
-    getRuleFailureAction,
-    (state): RuleStateInterface => ({
+    createRuleFailureAction,
+    (state, action): CreateRuleStateInterface => ({
       ...state,
-      isLoading: false
+      isSubmitting: false,
+      validationErrors: action.errors
     })
   ),
-  on(routerNavigationAction, (): RuleStateInterface => initialState)
+  on(routerNavigationAction, (): CreateRuleStateInterface => initialState)
 )
 
-export function reducers(state: RuleStateInterface, action: Action) {
-  return ruleReducer(state, action)
+export function reducers(state: CreateRuleStateInterface, action: Action) {
+  return createRuleReducer(state, action)
 }

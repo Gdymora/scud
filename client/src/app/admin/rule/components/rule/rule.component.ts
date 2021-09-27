@@ -3,12 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { currentUserSelector } from 'src/app/auth/store/selectors';
-import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { GetRuleResponseInterface } from 'src/app/shared/types/getRuleResponse.interface';
 import { RuleInterface } from 'src/app/shared/types/rule.interface';
 import { getRuleForm } from '../../shared/classes/getRule.form';
 import { Rule } from '../../shared/model/rule';
+import { createRuleAction } from '../../store/actions/createRule.action';
 import { getRuleAction } from '../../store/actions/getRule.action';
 import { errorSelector, isLoadingSelector, ruleSelector } from '../../store/selectors';
 
@@ -18,20 +17,21 @@ import { errorSelector, isLoadingSelector, ruleSelector } from '../../store/sele
   styleUrls: ['./rule.component.scss']
 })
 export class RuleComponent implements OnInit, OnDestroy {
-  id: string
-  rules: Rule[];
-  selectedRule: FormGroup;
 
+  selectedRule: FormGroup;
   rule: RuleInterface | null
   ruleSubscription: Subscription
-  isLoAding$: Observable<boolean>
+  isLoading$: Observable<boolean>
   error$: Observable<string | null>
-  isAuthor$: Observable<boolean>
+  rules$: Observable<GetRuleResponseInterface | null>
+
+  dayList = ['Понеділок', 'Вівторок',
+    'Середа', 'Четверг', 'П\'ятниця', 'Субота', 'Неділя'];
+
   constructor(private store: Store, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initializeValues()
-    this.initializeListeners()
     this.ruleData()
   }
 
@@ -39,45 +39,24 @@ export class RuleComponent implements OnInit, OnDestroy {
     this.ruleSubscription.unsubscribe()
   }
 
-  initializeListeners(): void {
-    this.ruleSubscription = this.store
-      .pipe(select(ruleSelector))
-      .subscribe((rule: RuleInterface | null) => this.rule = rule)
-    /* проверяем создавал ли пользователь єто правило */
-    this.isAuthor$ = combineLatest(
-      [
-        this.store.pipe(select(ruleSelector)),
-        this.store.pipe(select(currentUserSelector))
-      ]
-    ).pipe(
-      map(
-        ([rule, currentUser]: [
-          RuleInterface | null,
-          CurrentUserInterface | null
-        ]) => {
-          if (!rule || !currentUser) {
-            return false
-          }
-          return currentUser.login === rule.rule_name
-        }
-      )
-    )
-  }
-
   initializeValues(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
-    this.isLoAding$ = this.store.pipe(select(isLoadingSelector))
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
-    console.log(this.id)
+    this.rules$ = this.store.pipe(select(ruleSelector))
+    console.log(this.rules$)
   }
 
   ruleData(): void {
-    this.store.dispatch(getRuleAction({ id: this.id }))
+    this.store.dispatch(getRuleAction())
   }
 
 
-  selectRule(rule: Rule) {
+  selectRule(rule: RuleInterface) {
     this.selectedRule = getRuleForm();
+  }
+
+  deleteRule(rule: RuleInterface) {
+    console.log('delete')
   }
 
   create() {
@@ -86,6 +65,7 @@ export class RuleComponent implements OnInit, OnDestroy {
 
   save(rule: FormGroup) {
     console.log("rule", rule)
+    this.store.dispatch(createRuleAction({ ruleInput: rule.value }))
   }
 
 }

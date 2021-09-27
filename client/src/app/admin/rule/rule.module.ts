@@ -16,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { CreateRuleService} from './shared/services/createRule.service';
+import { MatListModule } from '@angular/material/list';
+import { CreateRuleService } from './shared/services/createRule.service';
+import { CreateRuleEffect } from './store/effects/createRule.effect';
 const routes: Routes = [
   { path: ':id', component: RuleComponent },
 ]
@@ -32,13 +34,15 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forFeature('rule', reducers),
+    StoreModule.forFeature('createRule', reducers),
     RouterModule.forChild(routes),
-    EffectsModule.forFeature([GetRuleEffect, DeleteEffect]),
+    EffectsModule.forFeature([GetRuleEffect, CreateRuleEffect, DeleteEffect]),
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule,
   ],
   providers: [
     SharedRuleService,

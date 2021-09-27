@@ -1,1 +1,31 @@
 <p>rule-list works!</p>
+
+<article [class.highlighted]="active" (click)="select()">
+
+
+    <div *ngFor="let day of vm.day">
+        {{dayList[day]}}
+    </div>
+
+
+</article>
+
+<mat-selection-list #shoes [multiple]="false">
+
+    <mat-list-option style="
+    white-space: nowrap;" [value]="vm">
+        {{vm.rule_name}} 
+        <button class="button" mat-button color="accent" (click)="select()">Edit</button>
+        <button class="button" mat-button color="warn" (click)="delete()">Delete</button>
+        <ng-container *ngFor="let day of vm.day; let i= index">
+            {{dayList[day]}} {{vm.hour_first[i]}} {{vm.hour_the_second[i]}}
+
+        </ng-container>
+       
+    </mat-list-option>
+
+</mat-selection-list>
+
+<p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value.rule_name}}
+</p>

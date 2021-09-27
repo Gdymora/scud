@@ -6,6 +6,7 @@ import { deleteRuleAction, deleteRuleFailureAction, deleteRuleSuccessAction } fr
 import { RuleService as SharedRuleService } from 'src/app/shared/services/rule.service'
 import { RuleInterface } from 'src/app/shared/types/rule.interface'
 import { Router } from "@angular/router"
+import { GetRuleResponseInterface } from 'src/app/shared/types/getRuleResponse.interface'
 
 @Injectable()
 
@@ -15,7 +16,7 @@ export class DeleteEffect {
             ofType(deleteRuleAction),
             switchMap(({ id }) => {
                 return this.sharedRuleService.getId(id).pipe(
-                    map((rule: RuleInterface) => {
+                    map((rule: GetRuleResponseInterface) => {
                         return deleteRuleSuccessAction()
                     }),
 

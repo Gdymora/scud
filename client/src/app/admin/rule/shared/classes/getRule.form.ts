@@ -6,7 +6,7 @@ export function getRuleForm(): FormGroup {
         [RuleField.Rule_name]: new FormControl(null, [Validators.required]),
         [RuleField.Day]: new FormControl(null, [Validators.required]),
         [RuleField.Hour_the_second]: new FormControl(null, [Validators.required, Validators.min(1)]),
-        [RuleField.Hour_the_first]: new FormControl(null, [Validators.required, Validators.min(1)]),
+        [RuleField.Hour_first]: new FormControl(null, [Validators.required, Validators.min(1)]),
    
     });
 }

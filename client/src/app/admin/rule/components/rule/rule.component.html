@@ -2,11 +2,17 @@
 
 <body>
     <button (click)="create()">Create</button>
-    <app-rule-form *ngIf="selectedRule" [form]="selectedRule" (save)="save($event)">
+    <app-rule-form *ngIf="selectedRule" [dayList]="dayList"
+     [form]="selectedRule" (save)="save($event)">
     </app-rule-form>
-    <div class="container" *ngIf="rules">
-        <app-rule-list *ngFor="let rule of rules" [vm]="rule" 
-            (selected)="selectRule(rule)">
+    <div *ngIf="isLoading$|async">Loading...</div>
+    <div *ngIf="isLoading$|async">Some error happend...</div>
+
+    <div class="container" *ngIf="rules$ | async">
+        <app-rule-list *ngFor="let rule of (rules$ | async).rule"
+         [vm]="rule" [dayList]="dayList"
+         (selected)="selectRule(rule)" (deleted)="deleteRule(rule)"
+         >
         </app-rule-list>
     </div>
 </body>

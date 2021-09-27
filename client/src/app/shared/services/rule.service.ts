@@ -14,24 +14,14 @@ export class RuleService {
     constructor(private http: HttpClient) { }
 
 
-    getAll(): Observable<RuleInterface> {
+    getAll(): Observable<GetRuleResponseInterface> {
         const fulUrl = environment.url + '/rule'
         return this.http.get<GetRuleResponseInterface>(fulUrl)
-            .pipe(
-                map((response: GetRuleResponseInterface) => {
-                    return response.rule
-                })
-            )
     }
 
-    getId(id: string): Observable<RuleInterface> {
+    getId(id: string): Observable<GetRuleResponseInterface> {
         const fulUrl = environment.url + `/rule/${id}`
         return this.http.get<GetRuleResponseInterface>(fulUrl)
-            .pipe(
-                map((response: GetRuleResponseInterface) => {
-                    return response.rule
-                })
-            )
     }
 
     delete(id: string): Observable<{}> {
