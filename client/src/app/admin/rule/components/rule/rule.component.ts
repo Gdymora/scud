@@ -6,7 +6,7 @@ import { combineLatest, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { currentUserSelector } from 'src/app/auth/store/selectors';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
-import { RuleInterface } from 'src/app/shared/types/rule.Interface';
+import { RuleInterface } from 'src/app/shared/types/rule.interface';
 import { getRuleForm } from '../../shared/classes/getRule.form';
 import { Rule } from '../../shared/model/rule';
 import { getRuleAction } from '../../store/actions/getRule.action';

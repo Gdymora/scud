@@ -4,7 +4,7 @@ import { map, catchError, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs'
 import { getRuleAction, getRuleSuccessAction, getRuleFailureAction } from '../actions/getRule.action'
 import { RuleService as SharedRuleService } from 'src/app/shared/services/rule.service'
-import { RuleInterface } from 'src/app/shared/types/rule.Interface'
+import { RuleInterface } from 'src/app/shared/types/rule.interface'
 
 @Injectable()
 export class GetRuleEffect {

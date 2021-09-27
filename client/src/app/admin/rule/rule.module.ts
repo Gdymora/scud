@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { CreateRuleService} from './shared/services/createRule.service';
 const routes: Routes = [
   { path: ':id', component: RuleComponent },
 ]
@@ -40,7 +41,8 @@ const routes: Routes = [
     MatCardModule
   ],
   providers: [
-    SharedRuleService
+    SharedRuleService,
+    CreateRuleService
   ]
 })
 export class RuleModule { }

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store'
 import { ActionTypes } from 'src/app/admin/rule/store/actionTypes'
-import { RuleInterface } from 'src/app/shared/types/rule.Interface'
+import { RuleInterface } from 'src/app/shared/types/rule.interface'
 
 export const getRuleAction = createAction(
   ActionTypes.GET_RULE,

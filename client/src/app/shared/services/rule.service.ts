@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { GetRuleResponseInterface } from "../types/getRuleResponse.Interface";
-import { RuleInterface } from "../types/rule.Interface";
+import { GetRuleResponseInterface } from "../types/getRuleResponse.interface";
+import { RuleInterface } from "../types/rule.interface";
 
 @Injectable({
     providedIn: 'root',

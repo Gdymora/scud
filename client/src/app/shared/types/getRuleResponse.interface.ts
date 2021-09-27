@@ -1,4 +1,4 @@
-import { RuleInterface } from "./rule.Interface";
+import { RuleInterface } from "./rule.interface";
 
 export interface GetRuleResponseInterface {
     rule: RuleInterface

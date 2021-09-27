@@ -1,5 +1,5 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RuleField } from 'src/app/shared/types/rule.Interface';
+import { RuleField } from 'src/app/shared/types/rule.interface';
 
 export function getRuleForm(): FormGroup {
     return new FormGroup({
