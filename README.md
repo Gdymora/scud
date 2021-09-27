@@ -7,6 +7,7 @@ http://www.passportjs.org/packages/passport-jwt/
 http://www.passportjs.org/
 https://mongoosejs.com/docs/
 https://account.mongodb.com
+https://serialport.io/docs/api-parser-readline/
 
 ## .env
 
@@ -15,4 +16,8 @@ PORT=5000
 
 ### sudo netstat -nlp | grep :5000 узнать pid слушателя порта
 
-### sudo kill -9 $(sudo lsof -t -i:3000) убить процесс на 300 порту
+### sudo kill -9 $(sudo lsof -t -i:5000) убить процесс на 300 порту
+## ls -l /sys/bus/usb/devices или lshw -businfo посмотреть устройства
+## dmesg | grep tty обнаружить последовательные порты
+## sudo adduser $USER  dialout необходимо добавить пользователя для открытия ком порта
+ 

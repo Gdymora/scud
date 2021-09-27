@@ -11,9 +11,12 @@ const userAccessRoutes = require('./routes/userAccess')
 const morgan = require("morgan");
 require("dotenv").config();
 const config = require("./config/db");
+const serialPort = require('./middleware/serialRead');
 /* 
 127.0.0.1:5120/api/auth/register
 */
+serialPort.receivedRing();
+
 declare let process: {
   env: {
     PORT: number;
